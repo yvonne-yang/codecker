@@ -1,0 +1,57 @@
+> New database: max shapes is 20
+> Created circle1: ellipse 50 80 2 2
+> Moved circle1 to 100 160
+> Drew circle1: ellipse 100 160 2 2
+> Drew all shapes
+circle1: ellipse 100 160 2 2
+> Deleted shape circle1
+> Deleted: all shapes
+> New database: max shapes is 100
+> Error: invalid command
+> Error: invalid argument
+> Created triangle1: triangle 4 5 2 2
+> Created c1: circle 1 1 30 30
+> Error: invalid value
+> Error: invalid shape name
+> Created Ellipse: ellipse 100 100 20 10
+> Error: too many arguments
+> Error: too few arguments
+> New database: max shapes is 10
+> Error: invalid argument
+> Error: invalid value
+> Error: invalid argument
+> Error: invalid shape type
+> Error: too many arguments
+> Error: too few arguments
+> Created s1: rectangle 100 200 10 20
+> Error: invalid value
+> Error: invalid value
+> Error: shape everything not found
+> New database: max shapes is 10
+> Error: too many arguments
+> Error: too few arguments
+> Error: too few arguments
+> Error: too few arguments
+> Error: too few arguments
+> Error: shape s1 not found
+> Error: shape s1 not found
+> Error: too few arguments
+> Error: shape s1 not found
+> Error: too few arguments
+> Error: shape s1 not found
+> Error: too many arguments
+> Error: too few arguments
+> New database: max shapes is 1
+> Created s1: ellipse 1 1 3 3
+> Moved s1 to 30 30
+> New database: max shapes is 10
+> Drew all shapes
+> Error: shape s1 not found
+> Created s3: ellipse 10 10 10 10
+> Created s1: circle 1 1 90 90
+> Drew s1: circle 1 1 90 90
+> Deleted shape s3
+> Deleted shape s1
+> Drew all shapes
+> Error: too few arguments
+> 
