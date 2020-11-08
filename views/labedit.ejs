@@ -1,0 +1,31 @@
+<%- include("./partials/header")%>
+<% var labFound; %> 
+
+    <% course.labs.forEach(lab => { %>
+        <% if (lab._id==labID) { %>
+            <% labFound=lab; %> 
+        <% } %>
+    <% }) %>
+    <h1>Edit Lab</h1>
+    <form action="/courses/<%= course._id %>/<%= labFound._id %>/?_method=PUT " method="POST">
+        <div class="form-group form">
+            <label for="labName" class="col-sm-2 col-form-label">Lab name:</label>
+            <div class="col-sm-10">
+              <input type="text" name = "updatedlab[name]" class="form-control" id="inputEmail3" value="<%= labFound.name %>" required>
+            </div>
+      </div>
+      <div class="form-group form">
+            <label for="labLink" class="col-sm-2 col-form-label">Link:</label>
+            <div class="col-sm-10">
+              <input type="link" name = "updatedlab[downloadLink]" class="form-control" id="inputPassword3" value="<%= labFound.downloadLink %>"required>
+            </div>
+      </div>
+      <div class="form-group form">
+        <label for="labtextbox">Expected output:</label>
+        <textarea name="updatedlab[correctOutputFile]" class="form-control" id="labtextbox1" rows="3"><%= labFound.correctOutputFile %></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+<%- include("./partials/footer")%>

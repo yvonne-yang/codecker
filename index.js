@@ -175,15 +175,100 @@ app.get("/courses/:id/:labID", (req, res) => {
     } else {
       Lab.findById(req.params.labID, (err, foundLab) => {
         if (err) {
-          res.redirect("/courses" + req.params.id);
+          res.redirect("/courses/" + req.params.id);
         } else {
-          res.render("labs", {lab: foundLab});
+          res.render("labpage", {lab: foundLab, course: foundCourse, labID: req.params.labID});
         }
       });
     }
   });
 });
+//edit lab
+app.get("/courses/:id/:labID/edit", (req, res) => {
+  Course.findById(req.params.id, (err, foundCourse) => {
+    if (err) {
+      res.redirect("/courses");
+    } else {
+      Lab.findById(req.params.labID, (err, foundLab) => {
+        if (err) {
+          res.redirect("/courses/" + req.params.id+'/'+req.params.labID);
+        } else {
+          res.render("labedit", {lab: foundLab, course: foundCourse, labID: req.params.labID});
+        }
+      });
+    }
+  });
+});
+// update lab
+app.put("/courses/:id/:labID", (req, res) => {
+  // Course.findById(req.params.id, (err, updatedCourse) => {
+  //  if (err) {
+  //    console.log(err);
+  //    res.redirect("/courses"+req.params.id+"/"+req.params.labID);
+  //  } else {
+  //    console.log(req.params.labID);
+  //    console.log(req.body.updatedlab);
+  //    console.log(updatedCourse);
+  //    updatedCourse.labs.findByIdAndUpdate(req.params.labID, req.body.updatedlab, (err, foundLab) => {
+  //      console.log(req.body.updatedCourse);
+  //       if (err) {
+  //         console.log(err);
+  //         res.redirect("/courses/" + req.params.id+'/'+req.params.labID);
+  //       } else {
+  //         console.log("updated Lab");
+  //         res.render("labpage", {lab: foundLab, course: updatedCourse, labID: req.params.labID});
+  //       }
+  //     });
+  //  }
+  // });
+  
+  Course.findOneAndUpdate(
+     
+    { "_id": req.params.id, "labs._id": req.params.labID },
+    { 
+        "$set": {
+            "labs.$": req.body.updatedlab
+        }
+    },
+    function(err,lab) {
+      if (err) {
+        console.log(err);
+        res.redirect("/courses/" + req.params.id+'/'+req.params.labID);
+      } else {
+        Course.findById(req.params.id, (err, course) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(course);
+            Lab.findById(req.params.labID, (err, foundLab) => {
+              if (err) {
+                res.redirect("/courses");
+              } else {
+                 res.redirect("/courses/"+req.params.id);
+              }
+            });
 
+          }
+        })
+        
+      }
+    }
+);
+});
+app.delete("/courses/:id/:labID", (req, res) => {
+  Course.findById(req.params.id, (err, course) => {
+    if (err) {
+      console.log(err);
+    } else {
+      course.labs.id(req.params.labID).remove();
+      course.save(function (err) {
+      if (err) return handleError(err);
+      console.log('the lab was removed');
+    });
+       res.redirect("/courses/"+req.params.id);
+    }
+  })
+})
 
 
 
