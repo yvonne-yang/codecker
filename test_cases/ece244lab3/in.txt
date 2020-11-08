@@ -1,0 +1,54 @@
+maxShapes 20
+create circle1 ellipse 50 80 2 2
+move circle1 100 160
+draw circle1
+draw all
+delete circle1
+delete all
+maxShapes 100
+NotACommand
+create triangle1 triangle 4 five 2 2
+create triangle1 triangle 4 5 2 2
+create c1 circle 1 1 30 30
+move triangle1 -100 100
+create move ellipse 100 100 20 10
+create Ellipse ellipse 100 100 20 10
+draw triangle1 circle1
+draw
+maxShapes 10
+create s1 ellipse onehundred 1 2
+create s1 triangle -100 1 2 4
+create s1 rectangle one two five eight
+create s1 hexagon 100 1200 5 8
+create s1 ellipse 100 200 1 2 6
+create s1 ellipse 100 200
+create s1 rectangle 100 200 10 20
+rotate s1 -100
+rotate s1 362
+draw everything
+maxShapes 10
+create s1 triangle 100 1 2 2 done
+create s1 triangle 100 1
+create s1 triangle 100
+create s1
+create
+move s1 100 200 300
+move s1
+move
+draw s1 done
+draw
+delete s1 done
+delete all done
+delete
+maxShapes 1
+create s1 ellipse 1 1 3 3
+move s1 30 30
+maxShapes 10
+draw all
+delete s1
+create s3 ellipse 10 10 10 10
+create s1 circle 1 1 90 90
+draw s1
+delete s3
+delete s1
+draw all
