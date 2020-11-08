@@ -62,16 +62,22 @@
                 <h3>Expected Output:</h3>
                 <textarea id="textareaAfter" cols="70" rows="10"><%= labFound.correctOutputFile %></textarea>
                 <p></p>
-                <button id="buttonCompare" onclick="buttonCompareClicked();" class="btn btn-success mt-3"><a>Compare</a></button>
+                <button id="buttonCompare" onclick="buttonCompareClicked();"
+                    class="btn btn-success mt-3"><a>Compare</a></button>
             </div>
         </div>
         <div class="container">
             <br />
             <h3>Differences:</h3>
-            <div id="textareaDifferences" style="border: 1px solid #A0A0A0;">
+            <div id="textareaDifferences" style="border: 1px solid #A0A0A0; min-height: 100px;">
             </div>
         </div>
-
+        <div class="d-inline-flex mt-3 mb-5">
+            <a href="/courses/<%= course._id %>/<%= labFound._id %>/edit" class="btn btn-warning m-2"><i class="far fa-edit"></i> Edit Lab</a>
+            <form action="/courses/<%= course._id %>/<%= labFound._id %>?_method=DELETE" method="POST" id="delete">
+                <button type="submit" class="btn btn-danger m-2"><i class="far fa-trash-alt"></i> Delete Lab</button>
+            </form>
+        </div>
         <!-- user interface ends -->
 
         <script type="text/javascript">
@@ -515,7 +521,7 @@
                     ).replace(
                         ">", "&gt;"
                     ).replace(
-                        "\n", "<br />"
+                        /(?:\r\n|\r|\n)/g, '<br>'
                     );
 
                     return returnValue;
@@ -525,10 +531,7 @@
 
 
 
-        <a href="/courses/<%= course._id %>/<%= labFound._id %>/edit" class="btn btn-warning">Edit</a>
-        <form action="/courses/<%= course._id %>/<%= labFound._id %>?_method=DELETE" method="POST" id="delete">
-            <button type="submit" class="btn btn-danger">Delete Lab</button>
-        </form>
+
     </div>
 </div>
 <script>
