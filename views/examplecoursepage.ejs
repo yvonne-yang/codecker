@@ -1,19 +1,22 @@
 <%- include("./partials/header")%>
-
-    <h1><%= course.name %> </h1>
-
-    <div class="list-group my-list">
-      <% course.labs.forEach(lab => { %>
-         <a href="/courses/<%= course._id %>/<%= lab._id %>" class="list-group-item list-group-item-action"><%= lab.name %> </a>
-      <% }) %>
-        <!-- <a href="#" class="list-group-item list-group-item-action">Lab 1</a>
-        <a href="#" class="list-group-item list-group-item-action">Lab 2</a>
-        <a href="#" class="list-group-item list-group-item-action">Lab 3</a> -->
-      </div>
-      <% var newCourse='/courses/'+course._id+'/new'; %> 
-      <h2>Lab not found? Add it <a href='<%= newCourse %> '>here.</a></h2>
-      <a href="/courses/<%= course._id %>/edit" class = "btn btn-warning">Edit</a>
+<div class="container mt-3">
+  <h1><%= course.name %> </h1>
+  <p class="text-center"><%= course.description %> </p>
+  <div class="list-group my-list">
+    <% course.labs.forEach(lab => { %>
+    <a href="/courses/<%= course._id %>/<%= lab._id %>" class="list-group-item list-group-item-action"><%= lab.name %>
+    </a>
+    <% }) %>
+  </div>
+  <% var newCourse='/courses/'+course._id+'/new'; %>
+  <h2>Lab not found? Add it <a href='<%= newCourse %> '>here!</a></h2>
+    <div class="d-inline-flex">
+      <a href="/courses/<%= course._id %>/edit" class="btn btn-warning m-2"><i class="far fa-edit"></i> Edit Course</a>
       <form action="/courses/<%= course._id %>?_method=DELETE" method="POST" id="delete">
-        <button type="submit" class="btn btn-danger">Delete Course</button>
+        <button type="submit" class="btn btn-danger m-2"><i class="far fa-trash-alt"></i> Delete Course</button>
       </form>
+    </div>
+</div>
+
+
 <%- include("./partials/footer")%>

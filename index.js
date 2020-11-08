@@ -57,9 +57,12 @@ app.get("/courses", (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render("landing", {
-        courses: allCourses
-      });
+        Course.find({}).sort({name: 'asc'}).exec(function(err, sortedCourses){
+          res.render("landing", {
+          courses: sortedCourses
+        });
+});
+      
     }
   })
 })
@@ -135,7 +138,6 @@ app.put("/courses/:id", (req, res) => {
 });
 //new lab
 app.get("/courses/:id/new", (req, res) => {
-  console.log("hello");
   Course.findById(req.params.id, (err, foundCourse) => {
     if(err){
       console.log("errorrrrrr");

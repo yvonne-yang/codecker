@@ -1,15 +1,24 @@
 <%- include("./partials/header")%>
+<div class="jumbotron">
+  <div class="container">
     <h1>Edit Course</h1>
     <form action="/courses/<%= course._id %>?_method=PUT " method="POST">
-        <div class="form-group form">
-          <label for="newCourse">Course code:</label>
-          <input type="text" name = "course[name]" class="form-control" id="course code" aria-describedby="course code" value="<%= course.name %> " required>
-          <small id="course code" class="form-control">Example course code: ASP100</small>
-          <label for="newCourse">Description:</label>
-          <input type="text" name="course[description]" class="form-control" value="<%= course.description %> " required>
-        </div>
-       
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      
+      <div class="form-group form">
+        <label for="newCourse">Course Code:</label>
+        <input type="text" name="course[name]" class="form-control mb-3" id="course code" aria-describedby="course code"
+          value="<%= course.name %> " placeholder="For example, APS100" required>
+
+        <label for="newCourse">Course Description:</label>
+        <input type="text" name="course[description]" class="form-control mb-3" value="<%= course.description %> "
+          placeholder="General description" required>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+
+
+    </form>
+
+  </div>
+
+</div>
+
 <%- include("./partials/footer")%>
