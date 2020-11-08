@@ -12,4 +12,8 @@
       </div>
 
       <h2>Lab not found? Add it <a href="newlab.html">here.</a></h2>
+      <a href="/courses/<%= blog._id %>/edit " class = "btn btn-warning">Edit</a>
+      <form action="/courses/<%= blog._id %>?_method=DELETE" method="POST" id="delete">
+        <button type="button" class="btn btn-danger">Delete Course</button>
+      </form>
 <%- include("./partials/footer")%>
