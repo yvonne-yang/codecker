@@ -1,0 +1,15 @@
+<%- include("./partials/header")%>
+    <h1>Add a new course.</h1>
+    <form action="/courses" method="POST">
+        <div class="form-group form">
+          <label for="newCourse">Course code:</label>
+          <input type="text" name = "name" class="form-control" id="course code" aria-describedby="course code" required>
+          <small id="course code" class="form-control">Example course code: ASP100</small>
+          <label for="newCourse">Description:</label>
+          <input type="text" name="description" class="form-control" required>
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+<%- include("./partials/footer")%>

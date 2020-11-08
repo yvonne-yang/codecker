@@ -1,0 +1,77 @@
+<%- include("./partials/header")%>
+    <h1>>_codecker</h1>
+    <div class = "container">
+      
+        <div class = "row r ">
+          <% courses.forEach(course => { %>
+            <div class="col-4  ">
+                <div class="card">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= course.name %> </h5>
+                      <p class="card-text"><%= course.description %> </p>
+                      <a href="/courses/<%= course._id %> " class="btn btn-primary">Select</a>
+                    </div>
+                  </div>
+            </div>
+          <% }) %>
+          
+            <!-- <div class="col c">
+                <div class="card my-card">
+                    <div class="card-body">
+                      <h5 class="card-title">APS105</h5>
+                      <p class="card-text">First year C programming course for TrackOne and ECE students.</p>
+                      <a href="examplecoursepage.html" class="btn btn-primary">Select</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col c">
+                <div class="card my-card">
+                    <div class="card-body">
+                      <h5 class="card-title">APS106</h5>
+                      <p class="card-text">First year Python programming course for everyone else.</p>
+                      <a href="examplecoursepage.html" class="btn btn-primary">Select</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col c">
+                <div class="card my-card">
+                    <div class="card-body">
+                      <h5 class="card-title">ECE244</h5>
+                      <p class="card-text">Second year course for ECE students, uses the C++ programming language.</p><p></p>
+                      <a href="examplecoursepage.html" class="btn btn-primary">Select</a>
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class = "row r">
+            <div class="col c">
+                <div class="card my-card">
+                    <div class="card-body">
+                      <h5 class="card-title">ECE297</h5>
+                      <p class="card-text">Second year course for ECE students, C++.</p><p></p>
+                      <a href="examplecoursepage.html" class="btn btn-primary">Select</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col c">
+                <div class="card my-card">
+                    <div class="card-body">
+                      <h5 class="card-title">EXAMPLE</h5>
+                      <p class="card-text">A programming course that some students take.</p><p></p>
+                      <a href="examplecoursepage.html" class="btn btn-primary">Select</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col c">
+                <div class="card my-card">
+                    <div class="card-body">
+                        <h5 class="card-title">EXAMPLE</h5>
+                        <p class="card-text">A programming course that some students take.</p><p></p>
+                        <a href="examplecoursepage.html" class="btn btn-primary">Select</a>
+                  </div>
+            </div>
+
+        </div> --> 
+    </div>
+    <h2>Course not found? Add it <a href="/courses/new">here.</a></h2>
+<%- include("./partials/footer")%>

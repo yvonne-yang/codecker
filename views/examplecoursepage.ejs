@@ -1,0 +1,15 @@
+<%- include("./partials/header")%>
+
+    <h1><%= course.name %> </h1>
+
+    <div class="list-group my-list">
+      <% course.labs.forEach(lab => { %>
+         <a href="#" class="list-group-item list-group-item-action"><%= lab.name %> </a>
+      <% }) %>
+        <!-- <a href="#" class="list-group-item list-group-item-action">Lab 1</a>
+        <a href="#" class="list-group-item list-group-item-action">Lab 2</a>
+        <a href="#" class="list-group-item list-group-item-action">Lab 3</a> -->
+      </div>
+
+      <h2>Lab not found? Add it <a href="newlab.html">here.</a></h2>
+<%- include("./partials/footer")%>
