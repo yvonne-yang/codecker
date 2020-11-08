@@ -7,7 +7,7 @@ As students ~dying~ in programming labs, we are always debugging and checking di
 
 ![unreadable_diff](demos/unreadable_diff.jpg)  
 
-This isn't even the worst part. Making the test cases themselves can take so many days. How can you guarantee that you checked for all the corner cases? So we thought, what if we could put together all the test cases that every person made, and have a beautiful UI to show differences between output files?
+This isn't even the worst part. Making the test cases themselves can take so many days. No one can guarantee that they checked for all the corner cases. We thought, what if we could put together all the test cases that every person made, and have a beautiful UI to show differences between output files?
 So, here's to my poor Reversi AI and to whoever thought using automarkers alone to mark coding assignments is fair.
 
 ## What it does
