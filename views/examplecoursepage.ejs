@@ -4,7 +4,7 @@
 
     <div class="list-group my-list">
       <% course.labs.forEach(lab => { %>
-         <a href="#" class="list-group-item list-group-item-action"><%= lab.name %> </a>
+         <a href="/courses/<%= course._id %>/<%= lab._id %>" class="list-group-item list-group-item-action"><%= lab.name %> </a>
       <% }) %>
         <!-- <a href="#" class="list-group-item list-group-item-action">Lab 1</a>
         <a href="#" class="list-group-item list-group-item-action">Lab 2</a>

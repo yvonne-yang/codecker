@@ -158,7 +158,7 @@ app.post("/courses/:id", (req, res) => {
     if(err){
       res.redirect("courses/"+req.params.id+"/new");
     }else{
-      console.log(foundCourse);
+      // console.log(foundCourse);
       foundCourse.labs.push(req.body.lab);
       foundCourse.save(function (err) {
       if (err) return handleError(err)
@@ -167,7 +167,7 @@ app.post("/courses/:id", (req, res) => {
     }
   })
 });
-//show?
+//show lab
 app.get("/courses/:id/:labID", (req, res) => {
   Course.findById(req.params.id, (err, foundCourse) => {
     if (err) {
