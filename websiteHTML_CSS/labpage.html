@@ -42,7 +42,7 @@
                           </div>
                         </fieldset>
                       </form>
-                      <a href="examplecoursepage.html" class="btn btn-primary">Download .zip</a>
+                      <a href="https://github.com/yvonne-yang/codecker" class="btn btn-primary">Download .zip</a>
                     </div>
                   </div>
             </div>
@@ -56,7 +56,7 @@
                       </div>
                       <div>
                         <label for="input-file">Specify a file:</label><br>
-                        <input type="file" id="input-file">
+                        <input type="file" id="input-file" accept=".txt">
                        </div>
                        
                        
@@ -97,25 +97,22 @@
                 <div class="card my-card">
                     <div class="card-body">
                       <div>
-                        <label>Before:</label>
-                        <br />
+                        <h3>Before:</h3>
                         <textarea id="content-target" cols="80" rows="10"></textarea>
                         </textarea> 
                     </div>
                 
                     <div>
-                        <label>After:</label>
-                        <br />
-                        <textarea id="textareaAfter" cols="80" rows="10">
-                        </textarea>
+                        <h3>After:</h3>
+                        <textarea id="textareaAfter" cols="80" rows="10"></textarea>
                     </div>
                 
-                    <button id="buttonCompare" onclick="buttonCompareClicked();">Compare</button>
+                    <button id="buttonCompare" onclick="buttonCompareClicked();"><a>Compare</a></button>
                 
                     <div>
-                        <label>Differences:</label>
-                        <br />
-                        <div id="textareaDifferences" style="border:1px solid;height:200px"></div>
+                      <br />
+                        <h3>Differences:</h3>
+                        <div id="textareaDifferences" style="border: 1px solid #A0A0A0; width: 665px; height:400px"></div>
                     </div>
                 
                     <!-- user interface ends -->
