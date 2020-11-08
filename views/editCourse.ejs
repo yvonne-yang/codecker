@@ -1,0 +1,15 @@
+<%- include("./partials/header")%>
+    <h1>Edit Course</h1>
+    <form action="/courses/<%= course._id %>?_method=PUT " method="POST">
+        <div class="form-group form">
+          <label for="newCourse">Course code:</label>
+          <input type="text" name = "course[name]" class="form-control" id="course code" aria-describedby="course code" value="<%= course.name %> " required>
+          <small id="course code" class="form-control">Example course code: ASP100</small>
+          <label for="newCourse">Description:</label>
+          <input type="text" name="course[description]" class="form-control" value="<%= course.description %> " required>
+        </div>
+       
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      
+<%- include("./partials/footer")%>

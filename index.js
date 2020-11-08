@@ -112,15 +112,70 @@ app.delete("/courses/:id", (req, res) => {
     }
   });
 });
+//edit course
+app.get("/courses/:id/edit", (req, res) => {
+  Course.findById(req.params.id, (err, foundCourse) => {
+    if (err) {
+      res.redirect("/courses");
+    } else {
+      res.render("editCourse.ejs", {course: foundCourse});
+    }
+  });
+});
+//update
+app.put("/courses/:id", (req, res) => {
+  Course.findByIdAndUpdate(req.params.id, req.body.course,(err, updatedCourse) => {
+   if (err) {
+     res.redirect("/courses");
+     console.log(err);
+   } else {
+     res.redirect("/courses/"+req.params.id);
+   } 
+  });
+});
+//new lab
+app.get("/courses/:id/new", (req, res) => {
+  console.log("hello");
+  Course.findById(req.params.id, (err, foundCourse) => {
+    if(err){
+      console.log("errorrrrrr");
+      res.redirect("courses/"+req.params.id);
+    }else{
+      res.render("newlab", {course: foundCourse});
+    }
+  })
+});
+//create lab
+app.post("/courses/:id", (req, res) => {
+  // Course.create(req.body.course, (err, newLab) => {
+  //   if (err) {
+  //     res.render("newLab");
+  //   } else {
+  //     res.redirect("/courses/"+req.params.id);
+  //   }
+  // });
+    Course.findById(req.params.id, (err, foundCourse) => {
+    if(err){
+      res.redirect("courses/"+req.params.id+"/new");
+    }else{
+      console.log(foundCourse);
+      foundCourse.labs.push(req.body.lab);
+      foundCourse.save(function (err) {
+      if (err) return handleError(err)
+        res.redirect("/courses/"+req.params.id);
+      });
+    }
+  })
+});
 //show?
 app.get("/courses/:id/:labID", (req, res) => {
   Course.findById(req.params.id, (err, foundCourse) => {
     if (err) {
-      redirect("/courses");
+      res.redirect("/courses");
     } else {
       Lab.findById(req.params.labID, (err, foundLab) => {
         if (err) {
-          redirect("/courses" + req.params.id);
+          res.redirect("/courses" + req.params.id);
         } else {
           res.render("labs", {lab: foundLab});
         }
@@ -128,27 +183,8 @@ app.get("/courses/:id/:labID", (req, res) => {
     }
   });
 });
-//new lab
-app.get("/courses/:id/new", (req, res) => {
-  Course.findById(req.params.id, (err, foundCourse) => {
-    if(err){
-      res.redirect("courses/"+req.params.id);
-    }else{
-      res.render("newLab", {course: foundCourse});
-    }
-  })
-});
-//create lab
-app.post("/courses/:id", (req, res) => {
-  req.body.course.body = req.sanitize(req.body.course.body);
-  Course.create(req.body.course, (err, newLab) => {
-    if (err) {
-      res.render("newLab");
-    } else {
-      res.redirect("/courses/"+req.params.id);
-    }
-  });
-});
+
+
 
 
 app.listen(3000, () => {
