@@ -123,9 +123,10 @@
     })(jQuery);
   </script>
   <style>
-    html{
+    html {
       scroll-behavior: smooth;
     }
+
     .linedwrap {
       border: 1px solid #c0c0c0;
       padding: 3px;
@@ -254,8 +255,15 @@
         </div>
       </div>
       <div class="container">
-        <button id="buttonCompare" onclick="buttonCompareClicked();document.getElementById('textareaDifferences').scrollIntoView(); document.getElementsByTagName('mark')[0].scrollIntoView();"
-          class="btn btn-success mt-3"><a>Compare</a></button>
+        <div class="d-flex justify-content-between">
+          <button id="buttonCompare"
+            onclick="buttonCompareClicked();document.getElementById('textareaDifferences').scrollIntoView(); document.getElementsByTagName('mark')[0].scrollIntoView();"
+            class="btn btn-success mt-3"><a>Compare</a></button>
+            <button class="btn btn-danger mt-3" onclick="document.getElementById('content-target').value=''; document.getElementById('textareaAfter').value=''; document.getElementById('textareaDifferences').innerHTML='';"  >
+              Clear all
+            </button>
+        </div>
+
         <br />
         <h3 class="mt-3">Differences:</h3>
         <div id="textareaDifferences" style="height: 2000px; overflow-y: scroll; max-height: 90vh ; padding-right: 0.3em; padding-top: 0.3em; font-size: 10pt;
