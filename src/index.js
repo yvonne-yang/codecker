@@ -70,7 +70,6 @@ app.get("/courses/new", (req, res) => {
   res.render("newcourse");
 });
 app.post("/courses", (req, res) => {
-  // req.body.course.body = req.sanitize(req.body.course.body);
   const name = req.body.name;
   const description = req.body.description;
   const newCourse = {
@@ -84,13 +83,6 @@ app.post("/courses", (req, res) => {
        res.redirect("/courses");
     }
   });
-  // Course.create(req.body.blog, (err, newCourse) => {
-  //   if (err) {
-  //     res.render("new");
-  //   } else {
-  //     res.redirect("/courses");
-  //   }
-  // });
 });
 //show
 app.get("/courses/:id", (req, res) => {
@@ -149,13 +141,6 @@ app.get("/courses/:id/new", (req, res) => {
 });
 //create lab
 app.post("/courses/:id", (req, res) => {
-  // Course.create(req.body.course, (err, newLab) => {
-  //   if (err) {
-  //     res.render("newLab");
-  //   } else {
-  //     res.redirect("/courses/"+req.params.id);
-  //   }
-  // });
     Course.findById(req.params.id, (err, foundCourse) => {
     if(err){
       res.redirect("courses/"+req.params.id+"/new");
@@ -203,27 +188,6 @@ app.get("/courses/:id/:labID/edit", (req, res) => {
 });
 // update lab
 app.put("/courses/:id/:labID", (req, res) => {
-  // Course.findById(req.params.id, (err, updatedCourse) => {
-  //  if (err) {
-  //    console.log(err);
-  //    res.redirect("/courses"+req.params.id+"/"+req.params.labID);
-  //  } else {
-  //    console.log(req.params.labID);
-  //    console.log(req.body.updatedlab);
-  //    console.log(updatedCourse);
-  //    updatedCourse.labs.findByIdAndUpdate(req.params.labID, req.body.updatedlab, (err, foundLab) => {
-  //      console.log(req.body.updatedCourse);
-  //       if (err) {
-  //         console.log(err);
-  //         res.redirect("/courses/" + req.params.id+'/'+req.params.labID);
-  //       } else {
-  //         console.log("updated Lab");
-  //         res.render("labpage", {lab: foundLab, course: updatedCourse, labID: req.params.labID});
-  //       }
-  //     });
-  //  }
-  // });
-  
   Course.findOneAndUpdate(
      
     { "_id": req.params.id, "labs._id": req.params.labID },
@@ -275,5 +239,5 @@ app.delete("/courses/:id/:labID", (req, res) => {
 
 
 app.listen(3000, () => {
-  console.log("YelpCamp Server has started");
+  console.log("Codecker Server has started");
 })
