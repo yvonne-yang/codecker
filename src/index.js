@@ -4,14 +4,14 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const Lab = require('./models/labs.js');
 const Course = require('./models/courses.js');
-
+const mongoLogin = require('./mongodbLogin.js');
 const expressSanitizer = require('express-sanitizer');
 const methodOverride = require('method-override');
 app.use(express.static("public"));
 mongoose.set("useFindAndModify", false);
 
 mongoose
-  .connect("mongodb://localhost:27017/newhacks2020", {
+  .connect('mongodb+srv://jintaohuang:'+mongoLogin.password+'@cluster0.rvtll.mongodb.net/codecker?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
