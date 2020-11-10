@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -8,6 +9,7 @@ const mongoLogin = require('./mongodbLogin.js');
 const expressSanitizer = require('express-sanitizer');
 const methodOverride = require('method-override');
 app.use(express.static("public"));
+
 mongoose.set("useFindAndModify", false);
 
 mongoose
@@ -49,9 +51,36 @@ app.set("view engine", "ejs");
 //   }
 // });
 
-app.get('/', (req, res) => {
-  res.redirect("/courses");
+app.use(
+  require('express-session')({
+    secret: process.env.APP_SECRET,
+    resave: true,
+    saveUninitialized: false
+  })
+);
+
+const { ExpressOIDC } = require('@okta/oidc-middleware');
+const oidc = new ExpressOIDC({
+  appBaseUrl: process.env.HOST_URL,
+  issuer: `${process.env.OKTA_ORG_URL}/oauth2/default`,
+  client_id: process.env.OKTA_CLIENT_ID,
+  client_secret: process.env.OKTA_CLIENT_SECRET,
+  redirect_uri: `${process.env.HOST_URL}/callback`,
+  scope: 'openid profile',
+  routes: {
+    loginCallback: {
+      path: '/callback'
+    },
+  }
 });
+
+app.use(oidc.router);
+// @TODO add registration page
+app.get('/', (req, res) => {
+  res.render("login");
+});
+
+//show page
 app.get("/courses", (req, res) => {
   Course.find({}, (err, allCourses) => {
     if (err) {
