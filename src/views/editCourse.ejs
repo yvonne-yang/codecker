@@ -2,7 +2,8 @@
 <div class="jumbotron">
   <div class="container">
     <h1>Edit Course</h1>
-    <form action="/courses/<%= course._id %>?_method=PUT " method="POST">
+    <% if (user) { %>
+     <form action="/courses/<%= course._id %>?_method=PUT " method="POST">
       <div class="form-group form">
         <label for="newCourse">Course Code:</label>
         <input type="text" name="course[name]" class="form-control mb-3" id="course code" aria-describedby="course code"
@@ -16,6 +17,8 @@
 
 
     </form>
+    <% } %>
+    
 
   </div>
 

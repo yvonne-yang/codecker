@@ -2,7 +2,8 @@
 <div class="jumbotron">
   <div class="container">
     <h1>Add a new lab.</h1>
-    <form action="/courses/<%= course._id %> " method="POST">
+    <% if (user) { %>
+     <form action="/courses/<%= course._id %> " method="POST">
       <div class="form-group form">
         <label for="labName" class="col-form-label">Lab name:</label>
         <div>
@@ -19,6 +20,8 @@
         <button type="submit" class="btn btn-success">Submit</button>
       </div>
     </form>
+    <% } %>
+    
   </div>
 </div>
 <%- include("./partials/footer")%>

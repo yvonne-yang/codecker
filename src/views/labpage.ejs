@@ -99,12 +99,15 @@
 
             </div>
         </div>
-        <div class="d-inline-flex">
+        <% if (user) { %>
+         <div class="d-inline-flex">
             <a href="/courses/<%= course._id %>/<%= labFound._id %>/edit " class="btn btn-warning m-2" ><i class="far fa-edit"></i> Edit lab</a>
             <form action="/courses/<%= course._id %>/<%= labFound._id %>?_method=DELETE" method="POST" id="delete">
                 <button type="submit" class="btn btn-danger m-2"><i class="far fa-trash-alt"></i> Delete Lab</button>
             </form>
         </div>
+        <% } %>
+        
     </div>
 </div>
 

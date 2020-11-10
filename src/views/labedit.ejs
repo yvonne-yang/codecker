@@ -9,7 +9,8 @@
 <div class="jumbotron">
   <div class="container">
     <h1>Edit Lab</h1>
-    <form action="/courses/<%= course._id %>/<%= labFound._id %>/?_method=PUT " method="POST">
+    <% if (user) { %>
+     <form action="/courses/<%= course._id %>/<%= labFound._id %>/?_method=PUT " method="POST">
       <div class="form-group form">
         <label for="labName" class="col-form-label">Lab name:</label>
         <div class="">
@@ -27,6 +28,8 @@
         <button type="submit" class="btn btn-success">Submit</button>
       </div>
     </form>
+    <% } %>
+    
   </div>
 </div>
 

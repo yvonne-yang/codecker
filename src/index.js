@@ -78,10 +78,15 @@ const oidc = new ExpressOIDC({
 
 app.use(oidc.router);
 app.use('/register', require('./routes/register'));
+
 app.get('/', (req, res) => {
   res.redirect("courses");
 });
-
+//logout
+app.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
 //show page
 app.get("/courses", (req, res) => {
   Course.find({}, (err, allCourses) => {
@@ -96,18 +101,22 @@ app.get("/courses", (req, res) => {
         name: 'asc'
       }).exec(function (err, sortedCourses) {
         res.render("landing", {
-          courses: sortedCourses, userContext:userContext});
+          courses: sortedCourses,
+          userContext: userContext
+        });
       });
 
     }
   })
 })
 app.get("/courses/new", (req, res) => {
-      const {
-        userContext
-      } = req.userContext;
-      // console.log(req.userContext);
-  res.render("newcourse", {userContext:userContext});
+  if (typeof req.userContext === 'undefined') {
+    req.userContext = false;
+  }
+  const userContext = req.userContext;
+  res.render("newcourse", {
+    userContext: userContext
+  });
 });
 app.post("/courses", (req, res) => {
   const name = req.body.name;
@@ -127,21 +136,20 @@ app.post("/courses", (req, res) => {
 //show
 
 app.get("/courses/:id", (req, res) => {
-   console.log(req.userContext);
+  //  console.log(req.userContext);
   Course.findById(req.params.id, (err, foundCourse) => {
     if (err) {
       redirect("/courses");
     } else {
-      
-      if (typeof req.userContext === 'undefined'){
-        req.userContext= true;
+
+      if (typeof req.userContext === 'undefined') {
+        req.userContext = false;
       }
-      const {
-        userContext
-      } = req.userContext;
-     
+      const userContext = req.userContext;
+
       res.render("examplecoursepage", {
-        course: foundCourse, userContext:userContext
+        course: foundCourse,
+        userContext: userContext
       });
     }
   });
@@ -159,12 +167,17 @@ app.delete("/courses/:id", (req, res) => {
 });
 //edit course
 app.get("/courses/:id/edit", (req, res) => {
+  if (typeof req.userContext === 'undefined') {
+    req.userContext = false;
+  }
+  const userContext = req.userContext;
   Course.findById(req.params.id, (err, foundCourse) => {
     if (err) {
       res.redirect("/courses");
     } else {
       res.render("editCourse.ejs", {
-        course: foundCourse
+        course: foundCourse,
+        user: userContext
       });
     }
   });
@@ -182,13 +195,18 @@ app.put("/courses/:id", (req, res) => {
 });
 //new lab
 app.get("/courses/:id/new", (req, res) => {
+  if (typeof req.userContext === 'undefined') {
+    req.userContext = false;
+  }
+  const userContext = req.userContext;
   Course.findById(req.params.id, (err, foundCourse) => {
     if (err) {
       console.log("errorrrrrr");
       res.redirect("courses/" + req.params.id);
     } else {
       res.render("newlab", {
-        course: foundCourse
+        course: foundCourse,
+        user: userContext
       });
     }
   })
@@ -210,6 +228,10 @@ app.post("/courses/:id", (req, res) => {
 });
 //show lab
 app.get("/courses/:id/:labID", (req, res) => {
+  if (typeof req.userContext === 'undefined') {
+    req.userContext = false;
+  }
+  const userContext = req.userContext;
   Course.findById(req.params.id, (err, foundCourse) => {
     if (err) {
       res.redirect("/courses");
@@ -221,7 +243,8 @@ app.get("/courses/:id/:labID", (req, res) => {
           res.render("labpage", {
             lab: foundLab,
             course: foundCourse,
-            labID: req.params.labID
+            labID: req.params.labID,
+            user: userContext
           });
         }
       });
@@ -230,6 +253,10 @@ app.get("/courses/:id/:labID", (req, res) => {
 });
 //edit lab
 app.get("/courses/:id/:labID/edit", (req, res) => {
+    if (typeof req.userContext === 'undefined') {
+    req.userContext = false;
+  }
+  const userContext = req.userContext;
   Course.findById(req.params.id, (err, foundCourse) => {
     if (err) {
       res.redirect("/courses");
@@ -241,7 +268,8 @@ app.get("/courses/:id/:labID/edit", (req, res) => {
           res.render("labedit", {
             lab: foundLab,
             course: foundCourse,
-            labID: req.params.labID
+            labID: req.params.labID,
+            user: userContext
           });
         }
       });
@@ -285,6 +313,7 @@ app.put("/courses/:id/:labID", (req, res) => {
     }
   );
 });
+//delete lab
 app.delete("/courses/:id/:labID", (req, res) => {
   Course.findById(req.params.id, (err, course) => {
     if (err) {

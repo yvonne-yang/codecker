@@ -1,5 +1,5 @@
 <%- include("./partials/header")%>
-<% if (userContext) { %>
+<% if (!userContext) { %>
   <h3>Please go back</h3>
 <% }else{ %> 
 <div class="jumbotron">
