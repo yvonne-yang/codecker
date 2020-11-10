@@ -1,6 +1,7 @@
 <%- include("./partials/header")%>
 
 <div class="container mt-3">
+  
   <h1>>_codecker</h1>
   <div class="row ">
     <% courses.forEach(course => { %>
@@ -16,5 +17,8 @@
     <% }) %>
 
   </div>
-  <h2>Course not found? Add it <a href="/courses/new">here.</a></h2>
+  <% if(userContext){ %>
+    <h2>Course not found? Add it <a href="/courses/new">here.</a></h2>
+  <%  }%>
+
   <%- include("./partials/footer")%>

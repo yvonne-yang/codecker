@@ -1,4 +1,7 @@
 <%- include("./partials/header")%>
+<% if (userContext) { %>
+  <h3>Please go back</h3>
+<% }else{ %> 
 <div class="jumbotron">
   <div class="container">
     <h1>Add a new course.</h1>
@@ -16,5 +19,5 @@
     </form>
   </div>
 </div>
-
+<% } %> 
 <%- include("./partials/footer")%>
